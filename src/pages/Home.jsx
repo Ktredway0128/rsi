@@ -24,7 +24,7 @@ function Home() {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-50"
-          src="/src/assets/rsi-hero-video.mp4"
+          src="/rsi-hero-video.mp4"
         />
 
         <div className="absolute inset-0 bg-black opacity-40" />
