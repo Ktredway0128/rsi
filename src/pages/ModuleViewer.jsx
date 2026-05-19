@@ -176,14 +176,54 @@ export default function ModuleViewer() {
         {/* ── CONTENT STEP ── */}
         {step === 'content' && (
           <div>
-            <p className="text-xs tracking-[0.25em] uppercase text-gold font-sans mb-3">
-              Module {module?.number}
-            </p>
-            <h1 className="font-serif text-3xl md:text-4xl text-white mb-3">{module?.title}</h1>
-            <div className="w-50 h-px bg-gold mb-12" />
+            {/* Hero image */}
+            <div className="relative w-full h-64 md:h-80 mb-12 overflow-hidden rounded-sm">
+              <img
+                src={`/modules/images/module-${module?.number}.png`}
+                alt={module?.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black opacity-40" />
+              <div className="absolute inset-0 flex flex-col justify-end p-8">
+                <p className="text-xs tracking-[0.25em] uppercase text-gold font-sans mb-2">
+                  Module {module?.number}
+                </p>
+                <h1 className="font-serif text-3xl md:text-4xl text-white leading-tight">{module?.title}</h1>
+                <div className="w-32 h-px bg-gold mt-3" />
+              </div>
+            </div>
 
-            {sections.map((section) => (
+            {sections.map((section, idx) => (
               <div key={section.id} className="mb-12">
+
+                {/* Module 2 video before Carrying & Clearing section */}
+                {module?.number === 2 && idx === 3 && (
+                  <div className="mb-8 overflow-hidden rounded-sm">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full object-cover"
+                      src="/modules/videos/module-2.mp4"
+                    />
+                  </div>
+                )}
+
+                {/* Module 5 video before Decanting section */}
+                {module?.number === 5 && idx === 3 && (
+                  <div className="mb-8 overflow-hidden rounded-sm">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full object-cover"
+                      src="/modules/videos/module-5.mp4"
+                    />
+                  </div>
+                )}
+
                 <h2 className="font-serif text-xl text-white mb-4">{section.title}</h2>
                 <div className="text-gray-400 text-base leading-relaxed whitespace-pre-line">
                   {section.content}

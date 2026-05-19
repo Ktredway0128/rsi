@@ -29,7 +29,7 @@ function About() {
           {/* Photo */}
           <div className="flex-shrink-0">
             <img
-              src="/src/assets/headshot.jpg"
+              src="/headshot.jpg"
               alt="Kyle Tredway"
               className="w-72 h-80 object-cover object-top grayscale"
             />
