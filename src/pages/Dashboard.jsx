@@ -56,9 +56,14 @@ export default function Dashboard() {
       {/* Header */}
       <div className="border-b border-neutral-900 px-6 md:px-12 py-5 flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-gold" style={{ fontFamily: 'Georgia, serif' }}>
-            RSI
+          RSI
         </a>
         <div className="flex items-center gap-6">
+          <a href="/" className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans hidden md:block">Home</a>
+          <a href="/program" className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans hidden md:block">Program</a>
+          <a href="/pricing" className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans hidden md:block">Pricing</a>
+          <a href="/contact" className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans hidden md:block">Contact</a>
+          <span className="text-neutral-700 hidden md:block">|</span>
           <span className="text-gray-500 text-xs font-sans hidden sm:block">{profile?.full_name || user.email}</span>
           <button
             onClick={handleSignOut}
