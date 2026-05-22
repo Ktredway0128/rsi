@@ -10,6 +10,7 @@ import ModuleViewer from './pages/ModuleViewer'
 import { useAuth } from './context/AuthContext'
 import Exam from './pages/Exam'
 import Certificate from './pages/Certificate'
+import EstablishmentCertificate from './pages/EstablishmentCertificate'
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
@@ -50,6 +51,7 @@ function App() {
             <Certificate />
           </ProtectedRoute>
         } />
+        <Route path="/establishment-certificate" element={<EstablishmentCertificate />} />
       </Routes>
     </BrowserRouter>
   )

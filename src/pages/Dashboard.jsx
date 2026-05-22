@@ -107,37 +107,53 @@ export default function Dashboard() {
 
         {/* Modules */}
         <div className="flex flex-col gap-3 mb-12">
-          {modules.map((mod) => {
+          {modules.map((mod, idx) => {
             const status = getModuleStatus(mod.id)
+            const prevModule = idx > 0 ? modules[idx - 1] : null
+            const prevCompleted = idx === 0 || getModuleStatus(prevModule.id) === 'completed'
+            const isLocked = !prevCompleted
+
             return (
               <button
                 key={mod.id}
-                onClick={() => navigate(`/module/${mod.id}`)}
-                className="group flex items-center gap-6 border border-neutral-800 hover:border-gold/50 bg-neutral-950 px-6 py-5 text-left transition-all duration-200 hover-lift"
+                onClick={() => !isLocked && navigate(`/module/${mod.id}`)}
+                disabled={isLocked}
+                className={`group flex items-center gap-6 border bg-neutral-950 px-6 py-5 text-left transition-all duration-200 ${
+                  isLocked
+                    ? 'border-neutral-800 opacity-40 cursor-not-allowed'
+                    : 'border-neutral-800 hover:border-gold/50 hover-lift cursor-pointer'
+                }`}
               >
-                <span className="text-gold/30 font-serif text-2xl w-8 flex-shrink-0 group-hover:text-gold/60 transition-colors">
+                <span className={`font-serif text-2xl w-8 flex-shrink-0 transition-colors ${
+                  isLocked ? 'text-neutral-700' : 'text-gold/30 group-hover:text-gold/60'
+                }`}>
                   {String(mod.number).padStart(2, '0')}
                 </span>
                 <div className="flex-1">
                   <h3 className="font-serif text-white text-base mb-0.5">{mod.title}</h3>
-                    {mod.duration_minutes && (
-                        <p className="text-xs text-gray-600 font-sans">{mod.duration_minutes} minutes</p>
-                    )}
+                  {mod.duration_minutes && (
+                    <p className="text-xs text-gray-600 font-sans">{mod.duration_minutes} minutes</p>
+                  )}
                 </div>
                 <div className="flex-shrink-0">
-                  {status === 'completed' && (
+                  {isLocked && (
+                    <svg className="w-4 h-4 text-neutral-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                  )}
+                  {!isLocked && status === 'completed' && (
                     <div className="w-6 h-6 rounded-full border border-gold flex items-center justify-center">
                       <svg className="w-3 h-3 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                   )}
-                  {status === 'in_progress' && (
+                  {!isLocked && status === 'in_progress' && (
                     <div className="w-6 h-6 rounded-full border border-gold/40 flex items-center justify-center">
                       <div className="w-2 h-2 rounded-full bg-gold/40" />
                     </div>
                   )}
-                  {status === 'not_started' && (
+                  {!isLocked && status === 'not_started' && (
                     <div className="w-6 h-6 rounded-full border border-neutral-700 group-hover:border-gold/30 transition-colors" />
                   )}
                 </div>

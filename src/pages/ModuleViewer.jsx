@@ -18,14 +18,16 @@ export default function ModuleViewer() {
   const [loading, setLoading] = useState(true)
 
   // UI state
-  const [step, setStep] = useState('content') // 'content' | 'checkpoint' | 'exercise' | 'complete'
+  const [step, setStep] = useState('content')
   const [answers, setAnswers] = useState({})
   const [checkpointResult, setCheckpointResult] = useState(null)
   const [reflection, setReflection] = useState('')
   const [reflectionTimer, setReflectionTimer] = useState(DEV_MODE ? 0 : 300)
   const [reflectionStarted, setReflectionStarted] = useState(false)
-  const [revealedScenarios, setRevealedScenarios] = useState({})
+  const [openedScenarios, setOpenedScenarios] = useState({}) // which scenarios have been clicked open
+  const [revealedScenarios, setRevealedScenarios] = useState({}) // which RSI responses have been revealed
   const [scenarioTimers, setScenarioTimers] = useState({})
+  const [activeScenarioId, setActiveScenarioId] = useState(null) // which scenario timer is running
   const [contentTimer, setContentTimer] = useState(DEV_MODE ? 0 : 600)
 
   useEffect(() => {
@@ -49,7 +51,6 @@ export default function ModuleViewer() {
           .order('order_index')
         setScenarios(scens || [])
 
-        // Initialize scenario timers
         const timers = {}
         scens?.forEach(s => { timers[s.id] = DEV_MODE ? 0 : s.min_seconds })
         setScenarioTimers(timers)
@@ -72,23 +73,18 @@ export default function ModuleViewer() {
     return () => clearInterval(interval)
   }, [step, reflectionStarted, reflectionTimer])
 
-  // Scenario timers countdown
+  // Active scenario timer countdown
   useEffect(() => {
-    if (step !== 'exercise') return
-    const intervals = {}
-    scenarios.forEach(s => {
-      if (scenarioTimers[s.id] > 0) {
-        intervals[s.id] = setInterval(() => {
-          setScenarioTimers(prev => {
-            const next = { ...prev, [s.id]: Math.max(0, prev[s.id] - 1) }
-            if (next[s.id] === 0) clearInterval(intervals[s.id])
-            return next
-          })
-        }, 1000)
-      }
-    })
-    return () => Object.values(intervals).forEach(clearInterval)
-  }, [step])
+    if (!activeScenarioId || scenarioTimers[activeScenarioId] <= 0) return
+    const interval = setInterval(() => {
+      setScenarioTimers(prev => {
+        const next = { ...prev, [activeScenarioId]: Math.max(0, prev[activeScenarioId] - 1) }
+        if (next[activeScenarioId] === 0) clearInterval(interval)
+        return next
+      })
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [activeScenarioId])
 
   // Content timer countdown
   useEffect(() => {
@@ -121,12 +117,33 @@ export default function ModuleViewer() {
     }
   }
 
+  const handleOpenScenario = (scenarioId) => {
+    setOpenedScenarios(prev => ({ ...prev, [scenarioId]: true }))
+    setActiveScenarioId(scenarioId)
+  }
+
+  const handleRevealResponse = (scenarioId, idx) => {
+    setRevealedScenarios(prev => ({ ...prev, [scenarioId]: true }))
+    setActiveScenarioId(null)
+  }
+
   const canRevealScenario = (scenarioId) => {
     return DEV_MODE || scenarioTimers[scenarioId] <= 0
   }
 
+  // A scenario's arrow is visible if it's the first one, or the previous one has been revealed
+  const isScenarioVisible = (idx) => {
+    if (idx === 0) return true
+    const prevScenario = scenarios[idx - 1]
+    return revealedScenarios[prevScenario.id] === true
+  }
+
+  const allScenariosRevealed = scenarios.length > 0 && scenarios.every(s => revealedScenarios[s.id])
+
   const canSubmitReflection = () => {
-    return reflection.length >= (exercise?.min_characters || 100) && reflectionTimer <= 0
+    return reflection.length >= (exercise?.min_characters || 100) &&
+      reflectionTimer <= 0 &&
+      allScenariosRevealed
   }
 
   const handleCompleteModule = async () => {
@@ -176,7 +193,6 @@ export default function ModuleViewer() {
         {/* ── CONTENT STEP ── */}
         {step === 'content' && (
           <div>
-            {/* Hero image */}
             <div className="relative w-full h-64 md:h-80 mb-12 overflow-hidden rounded-sm">
               <img
                 src={`/modules/images/module-${module?.number}.png`}
@@ -195,35 +211,16 @@ export default function ModuleViewer() {
 
             {sections.map((section, idx) => (
               <div key={section.id} className="mb-12">
-
-                {/* Module 2 video before Carrying & Clearing section */}
                 {module?.number === 2 && idx === 3 && (
                   <div className="mb-8 overflow-hidden rounded-sm">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full object-cover"
-                      src="/modules/videos/module-2.mp4"
-                    />
+                    <video autoPlay muted loop playsInline className="w-full object-cover" src="/modules/videos/module-2.mp4" />
                   </div>
                 )}
-
-                {/* Module 5 video before Decanting section */}
                 {module?.number === 5 && idx === 3 && (
                   <div className="mb-8 overflow-hidden rounded-sm">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full object-cover"
-                      src="/modules/videos/module-5.mp4"
-                    />
+                    <video autoPlay muted loop playsInline className="w-full object-cover" src="/modules/videos/module-5.mp4" />
                   </div>
                 )}
-
                 <h2 className="font-serif text-xl text-white mb-4">{section.title}</h2>
                 <div className="text-gray-400 text-base leading-relaxed whitespace-pre-line">
                   {section.content}
@@ -287,7 +284,6 @@ export default function ModuleViewer() {
                     </div>
                   </div>
                 ))}
-
                 <div className="text-center">
                   <button
                     onClick={handleCheckpointSubmit}
@@ -345,7 +341,6 @@ export default function ModuleViewer() {
                 <p className="text-xs tracking-widest uppercase text-gold font-sans mb-2">Reflection</p>
                 <p className="text-white font-serif text-lg leading-relaxed">{exercise.scenario_prompt}</p>
               </div>
-
               <textarea
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
@@ -353,7 +348,6 @@ export default function ModuleViewer() {
                 placeholder="Write your response here..."
                 className="w-full bg-neutral-900 border border-neutral-700 focus:border-gold focus:ring-1 focus:ring-gold/20 text-white placeholder-gray-600 rounded-sm px-4 py-3 text-sm font-sans outline-none transition-all duration-200 resize-none"
               />
-
               <div className="flex items-center justify-between mt-2">
                 <span className={`text-xs font-sans ${reflection.length >= 100 ? 'text-gold' : 'text-gray-600'}`}>
                   {reflection.length} / 100 characters minimum
@@ -367,46 +361,76 @@ export default function ModuleViewer() {
             </div>
 
             {/* Scenarios */}
-            <div className="flex flex-col gap-8 mb-12">
-              <p className="text-xs tracking-widest uppercase text-gold font-sans">At The Table — Service Scenarios</p>
+            <div className="flex flex-col gap-6 mb-12">
+              <div className="flex items-center justify-between">
+                <p className="text-xs tracking-widest uppercase text-gold font-sans">At The Table — Service Scenarios</p>
+                <p className="text-xs text-gray-600 font-sans">{scenarios.length} Scenarios</p>
+              </div>
 
               {scenarios.map((scenario, idx) => (
-                <div key={scenario.id} className="border border-neutral-800 p-6">
-                  <p className="text-xs tracking-widest uppercase text-gray-500 font-sans mb-3">Scenario {idx + 1}</p>
-                  <p className="text-white leading-relaxed mb-5 font-serif">{scenario.scenario}</p>
+                <div key={scenario.id}>
 
-                  {!revealedScenarios[scenario.id] ? (
+                  {/* Scenario arrow — only visible when unlocked */}
+                  {isScenarioVisible(idx) && !openedScenarios[scenario.id] && (
                     <button
-                      onClick={() => {
-                        if (canRevealScenario(scenario.id)) {
-                          setRevealedScenarios(prev => ({ ...prev, [scenario.id]: true }))
-                        }
-                      }}
-                      disabled={!canRevealScenario(scenario.id)}
-                      className={`flex items-center gap-2 text-xs tracking-widest uppercase font-sans transition-colors ${
-                        canRevealScenario(scenario.id)
-                          ? 'text-gold hover:text-gold/70 cursor-pointer'
-                          : 'text-gray-600 cursor-not-allowed'
-                      }`}
+                      onClick={() => handleOpenScenario(scenario.id)}
+                      className="w-full flex items-center justify-between border border-neutral-800 hover:border-gold/40 px-6 py-4 transition-all text-left group"
                     >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <span className="text-xs tracking-widest uppercase text-gray-400 group-hover:text-white font-sans transition-colors">
+                        Scenario {idx + 1}
+                      </span>
+                      <svg className="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                       </svg>
-                      {canRevealScenario(scenario.id)
-                        ? 'Reveal RSI Response'
-                        : `Available in ${formatTime(scenarioTimers[scenario.id])}`
-                      }
                     </button>
-                  ) : (
-                    <div className="border-t border-neutral-800 pt-5">
-                      <p className="text-xs tracking-widest uppercase text-gold font-sans mb-3">RSI Response</p>
-                      <p className="text-gray-400 leading-relaxed">{scenario.rsi_response}</p>
+                  )}
+
+                  {/* Opened scenario */}
+                  {openedScenarios[scenario.id] && (
+                    <div className="border border-neutral-800 p-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-xs tracking-widest uppercase text-gray-500 font-sans">Scenario {idx + 1}</p>
+                        {activeScenarioId === scenario.id && scenarioTimers[scenario.id] > 0 && (
+                          <span className="text-xs text-gray-600 font-sans">
+                            {formatTime(scenarioTimers[scenario.id])} remaining
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-white leading-relaxed mb-5 font-serif">{scenario.scenario}</p>
+
+                      {!revealedScenarios[scenario.id] ? (
+                        <button
+                          onClick={() => canRevealScenario(scenario.id) && handleRevealResponse(scenario.id, idx)}
+                          disabled={!canRevealScenario(scenario.id)}
+                          className={`flex items-center gap-2 text-xs tracking-widest uppercase font-sans transition-colors ${
+                            canRevealScenario(scenario.id)
+                              ? 'text-gold hover:text-gold/70 cursor-pointer'
+                              : 'text-gray-600 cursor-not-allowed'
+                          }`}
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                          </svg>
+                          {canRevealScenario(scenario.id)
+                            ? 'Reveal RSI Response'
+                            : `Available in ${formatTime(scenarioTimers[scenario.id])}`
+                          }
+                        </button>
+                      ) : (
+                        <div className="border-t border-neutral-800 pt-5">
+                          <p className="text-xs tracking-widest uppercase text-gold font-sans mb-3">RSI Response</p>
+                          <p className="text-gray-400 leading-relaxed">{scenario.rsi_response}</p>
+                        </div>
+                      )}
                     </div>
                   )}
+
                 </div>
               ))}
             </div>
 
+            {/* Complete Module — always visible, grayed until all scenarios revealed */}
             <div className="text-center">
               <button
                 onClick={handleCompleteModule}
@@ -419,7 +443,10 @@ export default function ModuleViewer() {
                 <p className="text-gray-600 text-xs mt-3 font-sans">
                   {reflection.length < 100
                     ? 'Write at least 100 characters to continue'
-                    : `Wait ${formatTime(reflectionTimer)} to continue`}
+                    : reflectionTimer > 0
+                    ? `Reflection timer: ${formatTime(reflectionTimer)} remaining`
+                    : 'Complete all scenarios to continue'
+                  }
                 </p>
               )}
             </div>

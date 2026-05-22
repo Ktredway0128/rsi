@@ -37,10 +37,16 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString(),
+    })
+    setSubmitted(true)
+  }
 
   const inputBase =
     "bg-neutral-900 border text-white placeholder-gray-600 rounded-sm px-4 py-3 text-sm font-sans outline-none transition-all duration-200 w-full";
@@ -102,62 +108,63 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <InputField label="Full Name" id="name">
-                    <input {...fieldProps("name")} type="text" placeholder="Jane Smith" required />
-                  </InputField>
-                  <InputField label="Property Name" id="property">
-                    <input {...fieldProps("property")} type="text" placeholder="The Grand Hotel" required />
-                  </InputField>
-                </div>
+              <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <input type="hidden" name="form-name" value="contact" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <InputField label="Full Name" id="name">
+                        <input {...fieldProps("name")} type="text" placeholder="Jane Smith" required />
+                      </InputField>
+                      <InputField label="Property Name" id="property">
+                        <input {...fieldProps("property")} type="text" placeholder="The Grand Hotel" required />
+                      </InputField>
+                    </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <InputField label="Role / Title" id="role">
-                    <input {...fieldProps("role")} type="text" placeholder="Food & Beverage Director" required />
-                  </InputField>
-                  <InputField label="Email Address" id="email">
-                    <input {...fieldProps("email")} type="email" placeholder="jane@thegrandhotel.com" required />
-                  </InputField>
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <InputField label="Role / Title" id="role">
+                      <input {...fieldProps("role")} type="text" placeholder="Food & Beverage Director" required />
+                    </InputField>
+                    <InputField label="Email Address" id="email">
+                      <input {...fieldProps("email")} type="email" placeholder="jane@thegrandhotel.com" required />
+                    </InputField>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <InputField label="Phone Number" id="phone" optional>
-                    <input {...fieldProps("phone")} type="tel" placeholder="(602) 555-0100" />
-                  </InputField>
-                  <InputField label="Type of Inquiry" id="inquiryType">
-                    <select
-                      {...fieldProps("inquiryType")}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <InputField label="Phone Number" id="phone" optional>
+                      <input {...fieldProps("phone")} type="tel" placeholder="(602) 555-0100" />
+                    </InputField>
+                    <InputField label="Type of Inquiry" id="inquiryType">
+                      <select
+                        {...fieldProps("inquiryType")}
+                        required
+                        className={`${inputBase} ${focused === "inquiryType" ? inputFocused : inputIdle} appearance-none cursor-pointer`}
+                      >
+                        {INQUIRY_TYPES.map((opt) => (
+                          <option key={opt.value} value={opt.value} disabled={opt.value === ""} className="bg-neutral-900">
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                    </InputField>
+                  </div>
+
+                  <InputField label="Message" id="message">
+                    <textarea
+                      {...fieldProps("message")}
+                      rows={5}
+                      placeholder="Tell us about your team, timeline, or any questions you have..."
                       required
-                      className={`${inputBase} ${focused === "inquiryType" ? inputFocused : inputIdle} appearance-none cursor-pointer`}
-                    >
-                      {INQUIRY_TYPES.map((opt) => (
-                        <option key={opt.value} value={opt.value} disabled={opt.value === ""} className="bg-neutral-900">
-                          {opt.label}
-                        </option>
-                      ))}
-                    </select>
+                      className={`${inputBase} ${focused === "message" ? inputFocused : inputIdle} resize-none`}
+                    />
                   </InputField>
-                </div>
 
-                <InputField label="Message" id="message">
-                  <textarea
-                    {...fieldProps("message")}
-                    rows={5}
-                    placeholder="Tell us about your team, timeline, or any questions you have..."
-                    required
-                    className={`${inputBase} ${focused === "message" ? inputFocused : inputIdle} resize-none`}
-                  />
-                </InputField>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="hover-lift w-full sm:w-auto bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-10 py-4 transition-opacity"
-                  >
-                    Send Message
-                  </button>
-                </div>
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="hover-lift w-full sm:w-auto bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-10 py-4 transition-opacity"
+                    >
+                      Send Message
+                    </button>
+                  </div>
               </form>
             )}
           </div>
