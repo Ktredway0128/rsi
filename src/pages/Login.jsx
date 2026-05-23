@@ -4,8 +4,8 @@ import { supabase } from '../lib/supabase'
 
 export default function Login() {
   const navigate = useNavigate()
-  const [mode, setMode] = useState('login') // 'login' or 'signup'
-  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '', access_code:'' })
+  const [mode, setMode] = useState('login')
+  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -29,36 +29,6 @@ export default function Login() {
         setLoading(false)
         return
       }
-      if (!form.access_code.trim()) {
-        setError('An access code is required to enroll')
-        setLoading(false)
-        return
-      }
-
-      const { data: codeData, error: codeError } = await supabase
-        .from('access_codes')
-        .select('*')
-        .eq('code', form.access_code.trim().toUpperCase())
-        .eq('active', true)
-        .single()
-
-      if (codeError || !codeData) {
-        setError('Invalid access code — please check with your property manager')
-        setLoading(false)
-        return
-      }
-
-      if (codeData.expires_at && new Date(codeData.expires_at) < new Date()) {
-        setError('This access code has expired — please contact RSI')
-        setLoading(false)
-        return
-      }
-
-      if (codeData.current_uses >= codeData.max_uses) {
-        setError('This access code has reached its maximum uses — please contact RSI')
-        setLoading(false)
-        return
-      }
 
       const { data, error } = await supabase.auth.signUp({
         email: form.email,
@@ -73,13 +43,7 @@ export default function Login() {
         id: data.user.id,
         full_name: form.full_name,
         email: form.email,
-        access_code: form.access_code.trim().toUpperCase(),
-        property_name: codeData.property_name,
       })
-
-      await supabase.from('access_codes').update({
-        current_uses: codeData.current_uses + 1
-      }).eq('id', codeData.id)
 
       navigate('/dashboard')
 
@@ -180,22 +144,6 @@ export default function Login() {
                   required
                   className={inputBase}
                 />
-              </div>
-            )}
-
-            {mode === 'signup' && (
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Access Code</label>
-                <input
-                  name="access_code"
-                  type="text"
-                  placeholder="Enter your access code"
-                  value={form.access_code}
-                  onChange={handleChange}
-                  required
-                  className={inputBase}
-                />
-                <p className="text-xs text-gray-600 font-sans">Provided by your property manager or RSI</p>
               </div>
             )}
 
