@@ -7,6 +7,15 @@
     <title>rsi-web</title>
   </head>
   <body>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="property" />
+      <input type="text" name="role" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="inquiryType"></select>
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
