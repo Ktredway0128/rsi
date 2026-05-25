@@ -15,7 +15,12 @@ import ResetPassword from './pages/ResetPassword'
 import Terms from './pages/Terms'
 
 function ProtectedRoute({ children }) {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
+  if (loading) return (
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="w-8 h-8 border border-gold border-t-transparent rounded-full animate-spin" />
+    </div>
+  )
   if (!user) return <Navigate to="/login" replace />
   return children
 }

@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer";
+import { Link } from 'react-router-dom'
 
 const MODULES = [
   { number: "01", title: "Foundation of Refined Service", description: "The philosophy, posture, and mindset behind exceptional hospitality." },
@@ -65,18 +66,18 @@ function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="/pricing"
+            
+              <Link to="/pricing"
               className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
             >
               SEE PRICING
-            </a>
-            <a
-              href="/contact"
+              </Link>
+            
+              <Link to="/contact"
               className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift"
             >
               GET IN TOUCH
-            </a>
+              </Link>
           </div>
 
         </div>
@@ -157,12 +158,12 @@ function Home() {
          
 
           <div className="text-center mt-12">
-            <a
-              href="/program"
+            
+              <Link to="/program"
               className="hover-lift inline-block border border-gold text-gold text-xs tracking-widest uppercase font-sans px-10 py-4 transition-colors hover:bg-gold hover:text-black"
             >
               View Full Curriculum
-            </a>
+              </Link>
           </div>
 
         </div>
@@ -176,18 +177,18 @@ function Home() {
         </h2>
         <div className="w-12 h-px bg-gold mx-auto mb-8" />
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/pricing"
+          <Link
+            to="/pricing"
             className="hover-lift px-10 py-4 bg-gold text-black font-bold tracking-widest text-xs font-sans transition-opacity"
           >
             SEE PRICING
-          </a>
-          <a
-            href="/contact"
+          </Link>
+          <Link
+            to="/contact"
             className="hover-lift px-10 py-4 border border-gold text-gold font-bold tracking-widest text-xs font-sans transition-colors hover:bg-gold hover:text-black"
           >
             CONTACT US
-          </a>
+          </Link>
         </div>
       </section>
       <Footer />

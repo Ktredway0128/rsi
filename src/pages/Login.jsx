@@ -178,6 +178,21 @@ export default function Login() {
                 </div>
               )}
 
+              {mode === 'signup' && (
+                <div className="flex flex-col gap-1.5 opacity-40">
+                  <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">
+                    Access Code
+                    <span className="ml-2 text-gold normal-case tracking-normal text-xs">— For property enrollments</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Provided by your property"
+                    disabled
+                    className="bg-neutral-900 border border-neutral-700 text-white placeholder-gray-600 rounded-sm px-4 py-3 text-sm font-sans outline-none w-full cursor-not-allowed"
+                  />
+                </div>
+              )}
+
               {mode === 'login' && (
                 <div className="text-right">
                   <button
