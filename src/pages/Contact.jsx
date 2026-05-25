@@ -68,18 +68,28 @@ export default function Contact() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6 text-center max-w-3xl mx-auto">
-        <p className="text-xs tracking-[0.25em] uppercase text-gold font-sans mb-4">
-          Get in Touch
-        </p>
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
-          Elevate Your Team
-        </h1>
-        <div className="w-16 h-px bg-gold mx-auto mb-5" />
-        <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-          Whether you're a single property or a multi-location group, RSI is built to fit your team.
-          Reach out and we'll find the right path to certification together.
-        </p>
+      <section className="relative pt-32 pb-16 px-6 text-center overflow-hidden" style={{ minHeight: '500px' }}>
+        <div className="absolute inset-0">
+          <img
+            src="/contact-hero.png"
+            alt="Fine dining atmosphere"
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-black opacity-40" />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <p className="text-s tracking-[0.25em] uppercase text-gold font-sans mb-4">
+            Get in Touch
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
+            Elevate Your Team
+          </h1>
+          <div className="w-16 h-px bg-gold mx-auto mb-5" />
+          <p className="text-gray-400 text-base md:text-lg leading-relaxed">
+            Whether you're a single property or a multi-location group, RSI is built to fit your team.
+            Reach out and we'll find the right path to certification together.
+          </p>
+        </div>
       </section>
 
       {/* Main content */}
@@ -185,7 +195,7 @@ export default function Contact() {
             <div className="flex flex-col gap-5">
               <p className="text-xs tracking-widest uppercase text-gold font-sans">Direct Contact</p>
 
-              <a href="mailto:kyle@refinedserviceinstitute.com" className="group flex items-start gap-3">
+              <a href="mailto:refinedserviceinstitute@gmail.com" className="group flex items-start gap-3">
                 <div className="w-8 h-8 border border-neutral-700 group-hover:border-gold flex items-center justify-center flex-shrink-0 transition-colors">
                   <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -199,7 +209,7 @@ export default function Contact() {
                 </div>
               </a>
 
-              <a href="tel:+16025550100" className="group flex items-start gap-3">
+              <a href="tel:+14804380390" className="group flex items-start gap-3">
                 <div className="w-8 h-8 border border-neutral-700 group-hover:border-gold flex items-center justify-center flex-shrink-0 transition-colors">
                   <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -232,8 +242,8 @@ export default function Contact() {
             <div className="bg-neutral-900 border border-neutral-800 p-5">
               <p className="text-xs tracking-widest uppercase text-gold font-sans mb-2">In-Person Training</p>
               <p className="text-sm text-gray-400 leading-relaxed">
-                Local Maricopa County properties start at <span className="text-white">$225/server</span> (min. 5).
-                Travel engagements available nationwide from <span className="text-white">$325/server</span> (min. 10).
+                Local Maricopa County properties from <span className="text-white">$275/server</span> (min. 5).
+                Travel engagements available nationwide from <span className="text-white">$375/server</span> (min. 8 plus travel).
               </p>
             </div>
           </div>

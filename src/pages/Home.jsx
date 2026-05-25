@@ -69,13 +69,13 @@ function Home() {
               href="/pricing"
               className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
             >
-              GET CERTIFIED
+              SEE PRICING
             </a>
             <a
-              href="/pricing"
+              href="/contact"
               className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift"
             >
-              CERTIFY YOUR TEAM
+              GET IN TOUCH
             </a>
           </div>
 
@@ -88,17 +88,17 @@ function Home() {
 
           <div>
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
-            <h3 className="font-serif text-xl text-white mb-3">Built for Fine Dining</h3>
+            <h3 className="font-serif text-xl text-white mb-3">Built for Casual Upscale to Fine Dining</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Developed from 20 years at the highest levels of American fine dining — not adapted from generic hospitality training.
+              Developed from a 20 year journey at casual upscale to the highest levels of American fine dining — not adapted from generic hospitality training.
             </p>
           </div>
 
           <div>
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
-            <h3 className="font-serif text-xl text-white mb-3">Recognized Certification</h3>
+            <h3 className="font-serif text-xl text-white mb-3">Certification</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Servers earn an individual certificate valid for one year. Properties earn Establishment Certification when 80% of staff are certified.
+              Servers earn an individual certificate as proof of training completion for on-boarding.
             </p>
           </div>
 
@@ -127,7 +127,7 @@ function Home() {
             <div className="hidden md:block absolute top-6 left-1/4 right-1/4 h-px bg-neutral-800" />
 
             {[
-              { step: "01", title: "Enroll", body: "Schedule in-person workshop or purchase online access for your team or yourself with no scheduling required." },
+              { step: "01", title: "Enroll", body: "Schedule in-person workshop or purchase online access for your team with no scheduling required." },
               { step: "02", title: "Complete the Program", body: "For online, work through six modules at your own pace. Takes approximately three hours." },
               { step: "03", title: "Earn Certification", body: "Pass the 40-question exam at 80% or better and receive your certificate." },
             ].map(({ step, title, body }) => (

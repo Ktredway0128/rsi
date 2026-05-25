@@ -46,19 +46,29 @@ function Program() {
       <Navbar />
 
       {/* Hero */}
-      <div className="pt-40 pb-20 px-12 text-center border-b border-gold/20">
-        <p className="text-sm tracking-widest text-gold mb-4 uppercase">The Curriculum</p>
-        <h1
-          className="text-5xl font-bold text-white mb-6"
-          style={{ fontFamily: 'Georgia, serif' }}
-        >
-          The Certified Service Professional Program
-        </h1>
-        <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
-          Six modules covering the complete arc of refined service — from the philosophy of hospitality
-          to the mechanics of tableside wine service. Designed for upscale casual through fine dining.
-          Built to be completed in approximately three hours.
-        </p>
+      <div className="relative pt-40 pb-20 px-12 text-center border-b border-gold/20 overflow-hidden" style={{ minHeight: '600px' }}>
+        <div className="absolute inset-0">
+          <img
+            src="/program-hero.png"
+            alt="RSI Program"
+            className="w-full h-full object-cover opacity-40" style={{ objectPosition: 'center 35%' }}
+          />
+          <div className="absolute inset-0 bg-black opacity-50" />
+        </div>
+        <div className="relative z-10">
+          <p className="text-sm tracking-widest text-gold mb-4 uppercase">The Curriculum</p>
+          <h1
+            className="text-5xl font-bold text-white mb-6"
+            style={{ fontFamily: 'Georgia, serif' }}
+          >
+            The Certified Service Professional Program
+          </h1>
+          <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
+            Six modules covering the complete arc of refined service — from the philosophy of hospitality
+            to the mechanics of tableside wine service. Designed for upscale casual through fine dining.
+            Built to be completed in approximately three hours.
+          </p>
+        </div>
       </div>
 
       {/* How It Works */}
@@ -69,7 +79,7 @@ function Program() {
             { step: '01', title: 'Complete Six Modules', desc: 'Read each module, complete the reflection exercise, and work through four real service scenarios.' },
             { step: '02', title: 'Pass Each Checkpoint', desc: 'Three questions at the end of every module. All three must be answered correctly to advance.' },
             { step: '03', title: 'Take the Final Exam', desc: '40 questions drawn from a randomized pool. 80% to pass. Three attempts included.' },
-            { step: '04', title: 'Earn Your Certificate', desc: 'A named RSI Certified Service Professional certificate, valid for one year.' },
+            { step: '04', title: 'Earn Your Certificate', desc: 'A named RSI Certified Service Professional certificate, proof of curriculum completion.' },
           ].map((item) => (
             <div key={item.step} className="flex flex-col items-center">
               <span className="text-4xl font-bold text-gold/30 mb-4" style={{ fontFamily: 'Georgia, serif' }}>{item.step}</span>
@@ -112,17 +122,10 @@ function Program() {
       {/* Certification */}
       <div className="py-20 px-12 border-b border-gold/20">
         <p className="text-sm tracking-widest text-gold mb-12 uppercase text-center">Certification</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-4xl mx-auto">
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>Individual Certification</h3>
-            <p className="text-gray-400 leading-relaxed mb-4">Each server who passes the exam receives a named RSI Certified Service Professional certificate, valid for one year. The certificate belongs to them — it travels with them regardless of where they work.</p>
-            <p className="text-gray-400 leading-relaxed">Annual renewal keeps the standard current and the credential meaningful.</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>Establishment Certification</h3>
-            <p className="text-gray-400 leading-relaxed mb-4">When 80% of your serving staff hold a valid individual certification, your property earns RSI Establishment Certification — a credential that signals to every guest that service here is held to a defined and verified standard.</p>
-            <p className="text-gray-400 leading-relaxed">Renewed annually. Displayed proudly.</p>
-          </div>
+        <div className="max-w-2xl mx-auto text-center">
+          <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>Individual Certification</h3>
+          <p className="text-gray-400 leading-relaxed mb-4">Each server who passes the exam receives a named RSI Certified Service Professional certificate, proof of curriculum completion. Part of the on-boarding process.</p>
+          <p className="text-gray-400 leading-relaxed">The server steps onto the floor, day one, with the complete foundation of hospitality fresh in their mind.</p>
         </div>
       </div>
 
