@@ -4,10 +4,11 @@ import { supabase } from '../lib/supabase'
 
 export default function Login() {
   const navigate = useNavigate()
-  const [mode, setMode] = useState('login')
+  const [mode, setMode] = useState('login') // 'login' | 'signup' | 'forgot'
   const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -17,6 +18,16 @@ export default function Login() {
     e.preventDefault()
     setError(null)
     setLoading(true)
+
+    if (mode === 'forgot') {
+      const { error } = await supabase.auth.resetPasswordForEmail(form.email, {
+        redirectTo: 'https://refinedserviceinstitute.com/reset-password',
+      })
+      if (error) { setError(error.message); setLoading(false); return }
+      setResetSent(true)
+      setLoading(false)
+      return
+    }
 
     if (mode === 'signup') {
       if (form.password.length < 8) {
@@ -84,91 +95,126 @@ export default function Login() {
         {/* Card */}
         <div className="border border-neutral-800 bg-neutral-950 p-8">
           <h2 className="font-serif text-2xl text-white mb-1">
-            {mode === 'login' ? 'Welcome back' : 'Create your account'}
+            {mode === 'login' ? 'Welcome back' : mode === 'signup' ? 'Create your account' : 'Reset your password'}
           </h2>
           <p className="text-gray-500 text-sm mb-8">
-            {mode === 'login' ? 'Sign in to access your certification program.' : 'Begin your RSI certification.'}
+            {mode === 'login' ? 'Sign in to access your certification program.' : mode === 'signup' ? 'Begin your RSI certification.' : 'Enter your email and we\'ll send you a reset link.'}
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            {mode === 'signup' && (
+          {/* Forgot password success state */}
+          {mode === 'forgot' && resetSent ? (
+            <div className="text-center py-4">
+              <div className="w-12 h-12 rounded-full border border-gold flex items-center justify-center mx-auto mb-4">
+                <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p className="text-white font-serif text-lg mb-2">Check your email</p>
+              <p className="text-gray-400 text-sm mb-6">We sent a password reset link to {form.email}</p>
+              <button
+                onClick={() => { setMode('login'); setResetSent(false); setForm({ full_name: '', email: '', password: '', confirmPassword: '' }) }}
+                className="text-gold text-xs tracking-widest uppercase hover:underline font-sans"
+              >
+                Back to sign in
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              {mode === 'signup' && (
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Full Name</label>
+                  <input
+                    name="full_name"
+                    type="text"
+                    placeholder="Jane Smith"
+                    value={form.full_name}
+                    onChange={handleChange}
+                    required
+                    className={inputBase}
+                  />
+                </div>
+              )}
+
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Full Name</label>
+                <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Email Address</label>
                 <input
-                  name="full_name"
-                  type="text"
-                  placeholder="Jane Smith"
-                  value={form.full_name}
+                  name="email"
+                  type="email"
+                  placeholder="jane@thegrandhotel.com"
+                  value={form.email}
                   onChange={handleChange}
                   required
                   className={inputBase}
                 />
               </div>
-            )}
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Email Address</label>
-              <input
-                name="email"
-                type="email"
-                placeholder="jane@thegrandhotel.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className={inputBase}
-              />
-            </div>
+              {mode !== 'forgot' && (
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Password</label>
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={form.password}
+                    onChange={handleChange}
+                    required
+                    className={inputBase}
+                  />
+                </div>
+              )}
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
-                required
-                className={inputBase}
-              />
-            </div>
+              {mode === 'signup' && (
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Confirm Password</label>
+                  <input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="••••••••"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    className={inputBase}
+                  />
+                </div>
+              )}
 
-            {mode === 'signup' && (
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Confirm Password</label>
-                <input
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="••••••••"
-                  value={form.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className={inputBase}
-                />
-              </div>
-            )}
+              {mode === 'login' && (
+                <div className="text-right">
+                  <button
+                    type="button"
+                    onClick={() => { setMode('forgot'); setError(null) }}
+                    className="text-xs text-gray-500 hover:text-gold transition-colors font-sans"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+              )}
 
-            {error && (
-              <p className="text-red-400 text-xs font-sans">{error}</p>
-            )}
+              {error && (
+                <p className="text-red-400 text-xs font-sans">{error}</p>
+              )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="hover-lift mt-2 bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-10 py-4 transition-opacity disabled:opacity-50"
-            >
-              {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={loading}
+                className="hover-lift mt-2 bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-10 py-4 transition-opacity disabled:opacity-50"
+              >
+                {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : mode === 'signup' ? 'Create Account' : 'Send Reset Link'}
+              </button>
+            </form>
+          )}
 
-          <p className="text-center text-gray-600 text-xs mt-6 font-sans">
-            {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
-            <button
-              onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(null) }}
-              className="text-gold hover:underline"
-            >
-              {mode === 'login' ? 'Sign up' : 'Sign in'}
-            </button>
-          </p>
+          {!resetSent && (
+            <p className="text-center text-gray-600 text-xs mt-6 font-sans">
+              {mode === 'login' ? "Don't have an account? " : mode === 'signup' ? 'Already have an account? ' : 'Remember your password? '}
+              <button
+                onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(null) }}
+                className="text-gold hover:underline"
+              >
+                {mode === 'login' ? 'Sign up' : mode === 'forgot' ? 'Sign in' : 'Sign in'}
+              </button>
+            </p>
+          )}
         </div>
 
       </div>

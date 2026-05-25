@@ -11,6 +11,7 @@ import { useAuth } from './context/AuthContext'
 import Exam from './pages/Exam'
 import Certificate from './pages/Certificate'
 import EstablishmentCertificate from './pages/EstablishmentCertificate'
+import ResetPassword from './pages/ResetPassword'
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
@@ -52,6 +53,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="/establishment-certificate" element={<EstablishmentCertificate />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   )
