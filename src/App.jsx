@@ -12,6 +12,7 @@ import Exam from './pages/Exam'
 import Certificate from './pages/Certificate'
 import EstablishmentCertificate from './pages/EstablishmentCertificate'
 import ResetPassword from './pages/ResetPassword'
+import Terms from './pages/Terms'
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
@@ -54,6 +55,7 @@ function App() {
         } />
         <Route path="/establishment-certificate" element={<EstablishmentCertificate />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </BrowserRouter>
   )
