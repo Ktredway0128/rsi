@@ -60,7 +60,7 @@ function Home() {
           </h2>
 
           <p className="max-w-2xl text-gray-300 text-lg leading-relaxed mb-12">
-            The professional certification program for front-of-house serving staff.
+            The professional training program for front-of-house serving staff.
             In a hospitality landscape that has prioritized hype over genuine human
             connection, RSI exists to restore the standard.
           </p>
