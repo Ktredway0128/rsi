@@ -82,8 +82,16 @@ function Pricing() {
                 ))}
               </div>
             </div>
-
           </div>
+            <div className="mt-8 text-center">
+              <p className="text-gray-400 text-sm">
+                Managing multiple locations?{' '}
+                <a href="/contact" className="text-gold hover:text-gold/70 transition-colors">
+                  Get in touch for enterprise pricing.
+                </a>
+              </p>
+            </div>        
+
         </div>
       </div>
 

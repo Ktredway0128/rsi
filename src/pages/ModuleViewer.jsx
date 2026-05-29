@@ -9,6 +9,7 @@ export default function ModuleViewer() {
   const { id } = useParams()
   const { user } = useAuth()
   const navigate = useNavigate()
+  // const DEV_MODE = user?.email === 'refinedserviceinstitute+test@gmail.com'
 
   const [module, setModule] = useState(null)
   const [sections, setSections] = useState([])
