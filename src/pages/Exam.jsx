@@ -84,7 +84,15 @@ export default function Exam() {
       }).eq('id', user.id)
     }
 
-    setResult({ score, passed, correct, total: questions.length })
+    // If failed and no attempts remaining, reset everything
+    if (!passed && attemptNumber >= 3) {
+      await supabase.from('user_progress').delete().eq('user_id', user.id)
+      await supabase.from('exam_attempts').delete().eq('user_id', user.id)
+      setResult({ score, passed, correct, total: questions.length, reset: true })
+    } else {
+      setResult({ score, passed, correct, total: questions.length, reset: false })
+    }
+
     setStep('result')
     setSubmitting(false)
   }
@@ -274,13 +282,13 @@ export default function Exam() {
                 <p className="text-gray-400 text-sm mb-10">
                   {attemptsRemaining - 1 > 0
                     ? `You have ${attemptsRemaining - 1} attempt${attemptsRemaining - 1 === 1 ? '' : 's'} remaining. Review the modules and try again.`
-                    : 'You have used all three attempts. Please contact RSI to discuss your options.'
+                    : 'Your progress has been reset. Complete the program again to unlock the exam.'
                   }
                 </p>
                 {attemptsRemaining - 1 > 0 ? (
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
-                      onClick={() => navigate('/certificate')}
+                      onClick={() => navigate('/dashboard')}
                       className="hover-lift border border-gold text-gold text-xs tracking-widest uppercase font-sans px-10 py-4 transition-colors hover:bg-gold hover:text-black"
                     >
                       Review Modules
@@ -299,9 +307,12 @@ export default function Exam() {
                     </button>
                   </div>
                 ) : (
-                  <a href="/contact" className="hover-lift inline-block border border-gold text-gold text-xs tracking-widest uppercase font-sans px-10 py-4 transition-colors hover:bg-gold hover:text-black">
-                    Contact RSI
-                  </a>
+                  <button
+                    onClick={() => navigate('/dashboard')}
+                    className="hover-lift bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-12 py-4"
+                  >
+                    Return to Dashboard
+                  </button>
                 )}
               </>
             )}
