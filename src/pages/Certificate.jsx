@@ -109,15 +109,12 @@ export default function Certificate() {
             Certified Service Professional Program
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
             <div>
               <p className="text-xs tracking-widest uppercase text-gold font-sans mb-1">Issued</p>
               <p className="text-sm text-white font-sans">{formatDate(certificate.issued_at)}</p>
             </div>
-            <div>
-              <p className="text-xs tracking-widest uppercase text-gold font-sans mb-1">Valid Through</p>
-              <p className="text-sm text-white font-sans">{formatDate(certificate.expires_at)}</p>
-            </div>
+            
             <div>
               <p className="text-xs tracking-widest uppercase text-gold font-sans mb-1">Certificate No.</p>
               <p className="text-sm text-white font-sans" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>{certificate.certificate_number}</p>
