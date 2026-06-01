@@ -23,7 +23,7 @@ export default function ModuleViewer() {
   const [answers, setAnswers] = useState({})
   const [checkpointResult, setCheckpointResult] = useState(null)
   const [reflection, setReflection] = useState('')
-  const [reflectionTimer, setReflectionTimer] = useState(DEV_MODE ? 0 : 300)
+  const [reflectionTimer, setReflectionTimer] = useState(DEV_MODE ? 0 : 210)
   const [reflectionStarted, setReflectionStarted] = useState(false)
   const [reflectionSubmitted, setReflectionSubmitted] = useState(false)
   const [openedScenarios, setOpenedScenarios] = useState({}) // which scenarios have been clicked open
