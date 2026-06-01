@@ -172,9 +172,7 @@ export default function Dashboard() {
             </div>
             <p className="text-xs tracking-widest uppercase text-gold font-sans mb-1">Certified</p>
             <h3 className="font-serif text-white text-xl mb-1">RSI Certified Service Professional</h3>
-            <p className="text-gray-400 text-xs mb-5 font-sans">
-              Valid through {new Date(certificate.expires_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </p>
+      
             <button
               onClick={() => navigate('/certificate')}
               className="hover-lift px-10 py-3 bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold transition-opacity"
