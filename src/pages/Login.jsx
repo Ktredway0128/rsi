@@ -5,7 +5,7 @@ import { supabase } from '../lib/supabase'
 export default function Login() {
   const navigate = useNavigate()
   const [mode, setMode] = useState('login') // 'login' | 'signup' | 'forgot'
-  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '' })
+  const [form, setForm] = useState({ full_name: '', email: '', password: '', confirmPassword: '', access_code: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [resetSent, setResetSent] = useState(false)
@@ -39,6 +39,19 @@ export default function Login() {
         setError('Passwords do not match')
         setLoading(false)
         return
+      }
+
+      // Validate access code
+      const { data: codeData, error: codeError } = await supabase
+      .from('access_codes')
+      .select('*')
+      .eq('code', form.access_code.trim().toUpperCase())
+      .single()
+
+      if (codeError || !codeData) {
+      setError('Invalid access code. Please check with your property manager.')
+      setLoading(false)
+      return
       }
 
       const { data, error } = await supabase.auth.signUp({
@@ -179,16 +192,19 @@ export default function Login() {
               )}
 
               {mode === 'signup' && (
-                <div className="flex flex-col gap-1.5 opacity-40">
+                <div className="flex flex-col gap-1.5">
                   <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">
                     Access Code
-                    <span className="ml-2 text-gold normal-case tracking-normal text-xs">— For property enrollments</span>
+                    <span className="ml-2 text-gold normal-case tracking-normal text-xs">— Provided by your property</span>
                   </label>
                   <input
+                    name="access_code"
                     type="text"
                     placeholder="Provided by your property"
-                    disabled
-                    className="bg-neutral-900 border border-neutral-700 text-white placeholder-gray-600 rounded-sm px-4 py-3 text-sm font-sans outline-none w-full cursor-not-allowed"
+                    value={form.access_code}
+                    onChange={handleChange}
+                    required
+                    className={inputBase}
                   />
                 </div>
               )}
