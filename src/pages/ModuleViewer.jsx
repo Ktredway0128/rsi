@@ -3,13 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
 
-const DEV_MODE = true
+// const DEV_MODE = true
 
 export default function ModuleViewer() {
   const { id } = useParams()
   const { user } = useAuth()
   const navigate = useNavigate()
-  // const DEV_MODE = user?.email === 'refinedserviceinstitute+test@gmail.com'
+  const DEV_MODE = user?.email === 'refinedserviceinstitute+test@gmail.com'
 
   const [module, setModule] = useState(null)
   const [sections, setSections] = useState([])
