@@ -11,6 +11,7 @@ export default function Login() {
   const [resetSent, setResetSent]                     = useState(false)
   const [showPassword, setShowPassword]               = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)   
+  const [signupComplete, setSignupComplete]           = useState(false)
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -70,8 +71,10 @@ export default function Login() {
         full_name: form.full_name,
         email: form.email,
       })
-
-      navigate('/dashboard')
+      
+      setSignupComplete(true)
+      setLoading(false)
+      return
 
     } else {
       const { error } = await supabase.auth.signInWithPassword({
@@ -133,8 +136,24 @@ export default function Login() {
                 Back to sign in
               </button>
             </div>
+          ) : signupComplete ? (
+            <div className="text-center py-4">
+              <div className="w-12 h-12 rounded-full border border-gold flex items-center justify-center mx-auto mb-4">
+                <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p className="text-white font-serif text-lg mb-2">Check your email</p>
+              <p className="text-gray-400 text-sm mb-6">We sent a confirmation link to {form.email}. Click it to activate your account and access the program.</p>
+              <button
+                onClick={() => { setMode('login'); setSignupComplete(false); setForm({ full_name: '', email: '', password: '', confirmPassword: '', access_code: '' }) }}
+                className="text-gold text-xs tracking-widest uppercase hover:underline font-sans"
+              >
+                Back to sign in
+              </button>
+            </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {mode === 'signup' && (
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs tracking-widest uppercase text-gray-400 font-sans">Full Name</label>
