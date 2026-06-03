@@ -65,15 +65,16 @@ export default function Login() {
         }
       })
       if (error) { setError(error.message); setLoading(false); return }
-
+      
+      setSignupComplete(true)
+      setLoading(false)
+      
       await supabase.from('profiles').insert({
         id: data.user.id,
         full_name: form.full_name,
         email: form.email,
       })
       
-      setSignupComplete(true)
-      setLoading(false)
       return
 
     } else {
