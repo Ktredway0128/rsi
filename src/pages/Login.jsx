@@ -61,7 +61,8 @@ export default function Login() {
         email: form.email,
         password: form.password,
         options: {
-          data: { full_name: form.full_name }
+          data: { full_name: form.full_name },
+          emailRedirectTo: 'https://refinedserviceinstitute.com/dashboard'
         }
       })
       if (error) { setError(error.message); setLoading(false); return }
