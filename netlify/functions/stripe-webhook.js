@@ -34,7 +34,7 @@ export const handler = async (event) => {
     return { statusCode: 400, body: `Webhook Error: ${err.message}` }
   }
 
-  if (stripeEvent.type === 'checkout.session.completed' || stripeEvent.type === 'invoice.payment_succeeded') {
+  if (stripeEvent.type === 'checkout.session.completed') {
     const session = stripeEvent.data.object
     const customerEmail = session.customer_details?.email || session.customer_email
 
@@ -58,6 +58,7 @@ export const handler = async (event) => {
       max_uses: 10000,
       current_uses: 0,
       is_active: true,
+      email: customerEmail,
     })
 
     if (insertError) {
@@ -90,6 +91,22 @@ export const handler = async (event) => {
 
     console.log(`Access code ${code} created and sent to ${customerEmail}`)
     return { statusCode: 200, body: JSON.stringify({ success: true, code }) }
+  }
+
+  if (stripeEvent.type === 'customer.subscription.deleted') {
+    const subscription = stripeEvent.data.object
+    const customerId = subscription.customer
+
+    const { data: customer } = await stripe.customers.retrieve(customerId)
+    const customerEmail = customer.email
+
+    if (customerEmail) {
+      await supabase
+        .from('access_codes')
+        .update({ is_active: false })
+        .eq('email', customerEmail)
+      console.log(`Access code deactivated for ${customerEmail}`)
+    }
   }
 
   return { statusCode: 200, body: 'Event received' }
