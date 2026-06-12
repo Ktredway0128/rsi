@@ -91,7 +91,7 @@ function Home() {
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
             <h3 className="font-serif text-xl text-white mb-3">Built for Casual Upscale to Fine Dining</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Developed from a 20 year journey at casual upscale to the highest levels of American fine dining — not adapted from generic hospitality training.
+              Developed from a 20 year journey at casual upscale to the highest levels of American fine dining. Not adapted from generic hospitality training.
             </p>
           </div>
 
@@ -107,7 +107,7 @@ function Home() {
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
             <h3 className="font-serif text-xl text-white mb-3">Online in Three Hours</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Six focused modules, a 40-question exam, and a certificate — completed in-person or entirely online, on any device, at any pace.
+              Six focused modules, a 40-question exam, and a certificate. Completed entirely online, on any device, at any pace.
             </p>
           </div>
 
@@ -128,9 +128,9 @@ function Home() {
             <div className="hidden md:block absolute top-6 left-1/4 right-1/4 h-px bg-neutral-800" />
 
             {[
-              { step: "01", title: "Enroll", body: "Schedule in-person workshop or purchase online access for your team with no scheduling required." },
-              { step: "02", title: "Complete the Program", body: "For online, work through six modules at your own pace. Takes approximately three hours." },
-              { step: "03", title: "Earn Certification", body: "Pass the 40-question exam at 80% or better and receive your certificate." },
+              { step: "01", title: "Enroll", body: "Purchase online access for your team with no scheduling required. In-person workshops available." },
+              { step: "02", title: "Complete the Program", body: "Work through six modules, online, at your own pace. Takes approximately three hours." },
+              { step: "03", title: "Earn Certification", body: "Pass the 40-question exam at 80% or better and receive your certificate as proof of completion." },
             ].map(({ step, title, body }) => (
               <div key={step} className="flex flex-col items-center">
                 <div className="w-12 h-12 border border-gold flex items-center justify-center mb-6 bg-black relative z-10">

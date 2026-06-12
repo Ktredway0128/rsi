@@ -64,7 +64,7 @@ function Program() {
             The Certified Service Professional Program
           </h1>
           <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
-            Six modules covering the complete arc of refined service — from the philosophy of hospitality
+            Six modules covering the complete arc of refined service, from the philosophy of hospitality
             to the mechanics of tableside wine service. Designed for upscale casual through fine dining.
             Built to be completed in approximately three hours.
           </p>

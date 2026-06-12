@@ -16,7 +16,7 @@ function About() {
           The Standard Behind RSI
         </h1>
         <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
-          RSI was built by someone who has spent twenty years at the table — not behind a desk.
+          RSI was built by someone who has spent twenty years at the table, not behind a desk.
           Every principle in this program comes from real service, real guests, and a genuine belief
           that hospitality at its highest level is one of the most meaningful things a person can do professionally.
         </p>
@@ -59,13 +59,13 @@ function About() {
             </div>
 
             <p className="text-gray-400 leading-relaxed mb-6">
-              Kyle Tredway has spent two decades in fine dining — not as an observer, but as the person at the table. As a certified sommelier and lead server and trainer at some of the most respected restaurants in the country, he has seen firsthand what separates a server who is technically correct from one who genuinely changes a guest's evening.
+              Kyle Tredway has spent two decades in fine dining, not as an observer, but as the person at the table. As a certified sommelier and lead server and trainer at some of the most respected restaurants in the country, he has seen firsthand what separates a server who is technically correct from one who genuinely changes a guest's evening.
             </p>
             <p className="text-gray-400 leading-relaxed mb-6">
-              The Refined Service Institute was built to bridge that gap — to take the standard that exists at the highest level of hospitality and make it accessible, teachable, and verifiable for any property that cares about the experience they deliver.
+              The Refined Service Institute was built to bridge that gap. To take the standard that exists at the highest level of hospitality and make it accessible, teachable, and verifiable for any property that cares about the experience they deliver.
             </p>
             <p className="text-gray-400 leading-relaxed">
-              RSI is not a generic hospitality training program. It is a curriculum built from twenty years of real service, refined into a certification that means something because it was earned.
+              RSI is not a generic hospitality training program. It is a curriculum built from twenty years of real service, refined into training that means something because it was earned through decades on the floor.
             </p>
           </div>
 
@@ -80,15 +80,15 @@ function About() {
             {[
               {
                 title: 'Humans Need Humans',
-                body: 'In a world where artificial intelligence is replacing more human work every year, one thing remains irreplaceable — the human need to be cared for by another human. Hospitality is not just surviving the age of AI. It is becoming more valuable because of it.'
+                body: 'In a world where artificial intelligence is replacing more human work every year, one thing remains irreplaceable, the human need to be cared for by another human. Hospitality is not just surviving the age of AI. It is becoming more valuable because of it.'
               },
               {
                 title: 'The Standard Was Lost',
-                body: 'The industry has chased hype over heart. The hottest table, the longest waitlist, the most talked-about chef. And in the middle of all of it, the guest sits down — and nobody is really there with them. RSI exists to restore what was lost.'
+                body: 'The industry has chased hype over heart. The hottest table, the longest waitlist, the most talked-about chef. And in the middle of all of it, the guest sits down and nobody is really there with them. RSI exists to restore what was lost.'
               },
               {
                 title: 'Service Is a Craft',
-                body: 'The best servers in the world treat their work the way a surgeon treats precision or an architect treats structure. With intention, pride, and genuine care for the outcome. RSI trains servers to see their work that way — and to deliver on it every shift.'
+                body: 'The best servers in the world treat their work the way a surgeon treats precision or an architect treats structure. With intention, pride, and genuine care for the outcome. RSI trains servers to see their work that way and to deliver on it every shift.'
               },
             ].map((item) => (
               <div key={item.title}>

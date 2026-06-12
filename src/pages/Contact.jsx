@@ -87,7 +87,7 @@ export default function Contact() {
           <div className="w-16 h-px bg-gold mx-auto mb-5" />
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
             Whether you're a single property or a multi-location group, RSI is built to fit your team.
-            Reach out and we'll find the right path to certification together.
+            Reach out and we'll get you started.
           </p>
         </div>
       </section>
@@ -258,7 +258,7 @@ export default function Contact() {
         </h2>
         <div className="w-12 h-px bg-gold mx-auto mb-6" />
         <p className="text-gray-400 text-sm max-w-md mx-auto mb-8">
-          RSI certification is recognized proof of professional service excellence — for your team and your guests.
+          RSI certification confirms your team has completed the training, a visible mark of preparation for guests and managers alike.
         </p>
         <a
           href="/program"

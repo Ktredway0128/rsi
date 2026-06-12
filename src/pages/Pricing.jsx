@@ -16,8 +16,9 @@ function Pricing() {
           Simple, Transparent Pricing
         </h1>
         <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed">
-          A platform subscription for your property and in-person training when you want Kyle in the room.
-          No per-server fees. No renewals. Just access to the standard.
+          A platform subscription for your property. No per-server fees. No renewals. Just access to the standard. 
+          In-person staff training also available when you want the founder of RSI in the room.
+          
         </p>
       </div>
 
@@ -35,7 +36,7 @@ function Pricing() {
                 <span className="text-gray-400 text-sm ml-2">/ month</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                Unlimited staff access. New hires get a code and go through the program immediately. Cancel anytime.
+                Unlimited staff access. New hires get an access code and go through the program immediately. Cancel anytime.
               </p>
               <div className="border-t border-gold/10 pt-6">
                 {[
@@ -66,14 +67,13 @@ function Pricing() {
                 <span className="text-gray-400 text-sm ml-2">/ year</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
-                Everything in monthly, billed annually. Best for properties with consistent staff and regular turnover.
+                Everything in monthly, billed annually. The simplest way to budget training for the year ahead.
               </p>
               <div className="border-t border-gold/10 pt-6">
                 {[
                   'Everything in monthly',
                   'Two months free',
-                  'Priority support',
-                  'Ideal for stable teams',
+                  'Price locked in for the year',
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 mb-3">
                     <div className="w-1 h-1 rounded-full bg-gold mt-2 flex-shrink-0" />
@@ -121,10 +121,10 @@ function Pricing() {
                 There is nothing like being in the room.
               </h2>
               <p className="text-gray-400 leading-relaxed mb-6">
-                The online platform delivers the full RSI curriculum and a consistent standard across your entire team. Every server who completes it is genuinely prepared — the standard does not change based on how you get there.
+                The online platform delivers the full RSI curriculum and a consistent standard across your entire team. Every server who completes it is genuinely prepared. The standard does not change based on how you get there.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                In-person training adds something the screen cannot replicate — live demonstration of tableside mechanics, real-time correction, and the shared energy of an entire team going through the program together. And unlike the online program, in-person is built entirely around you. Your team. Your menu. Your beverage program. Your service culture. Kyle doesn't come in and deliver a script — he comes in and trains your specific people for your specific restaurant at the highest level.
+                In-person staff training adds something the screen cannot replicate. Live demonstration of tableside mechanics, real-time correction, and the shared energy of an entire team going through training together. And unlike the online program, in-person is built entirely around you. Your team. Your menu. Your beverage program. Your service culture. The founder of RSI doesn't come in and deliver a script, he comes in and trains your specific people for your specific restaurant at the highest level.
               </p>
             </div>
             <div className="flex-shrink-0 md:w-72">
@@ -134,7 +134,7 @@ function Pricing() {
                   'Live demonstration of tableside mechanics',
                   'Real-time correction and coaching',
                   'Live service scenario roleplay',
-                  'Curriculum tailored to your menu and atmosphere',
+                  'Training tailored to your menu and atmosphere',
                   'Direct Q&A with Kyle Tredway',
                   'Team energy and shared accountability',
                   'Twenty years of answers in the room',
@@ -164,7 +164,7 @@ function Pricing() {
                 <span className="text-gray-400 text-sm ml-2">/ server</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Half-day in-person training delivered at your property by Kyle Tredway. Not a recitation of the curriculum — a fully customized session built around your team, your menu, your beverage program, and your service culture.
+                Half-day in-person training delivered at your property by the founder of RSI. A fully customized session built around your team, your menu, your beverage program, and your service culture.
               </p>
               <p className="text-xs text-gold/60 tracking-wide">Minimum 5 servers</p>
             </div>
@@ -177,7 +177,7 @@ function Pricing() {
                 <span className="text-gray-400 text-sm ml-2">/ server + travel</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Full in-person training at properties outside the Maricopa County market. Fully customized to your team, your menu, your beverage program, and your service culture — delivered anywhere in the country.
+                Full in-person training at properties outside the Maricopa County market. Fully customized to your team, your menu, your beverage program, and your service culture. Delivered anywhere in the country.
               </p>
               <p className="text-xs text-gold/60 tracking-wide">Minimum 8 servers · Travel at cost</p>
             </div>
@@ -194,10 +194,10 @@ function Pricing() {
             Proof the standard has been met
           </h3>
           <p className="text-gray-400 leading-relaxed mb-4">
-            Every server who passes the exam receives a named RSI Certified Service Professional certificate. For most properties it becomes a simple part of the onboarding process — servers complete the program, earn their certificate, and show up to their first shift prepared.
+            Every server who passes the exam receives a named RSI Certified Service Professional certificate. For properties it becomes a simple part of the onboarding process. Servers complete the program, earn their certificate, and show up to their first shift prepared.
           </p>
           <p className="text-gray-400 leading-relaxed">
-            No ongoing renewal required. The certificate is proof of completion — a record that this server went through the RSI program and met the standard.
+            No expiration or ongoing renewal required. The certificate is proof of completion. A record that this front-of-house employee went through the RSI program and met the standard.
           </p>
         </div>
       </div>
@@ -209,27 +209,27 @@ function Pricing() {
           {[
             {
               q: 'How long does the program take?',
-              a: 'Approximately two to three hours to complete all six modules, reflection exercises, scenarios, and the final exam. Designed to fit within a half day.'
+              a: 'Approximately three hours to complete all six modules, reflection exercises, scenarios, and the final exam. Designed to fit within a half day.'
             },
             {
               q: 'How does the subscription work for new hires?',
-              a: 'When a new server joins your team, you give them an access code. They sign up, complete the program at their own pace, and earn their certificate. No per-server fees, no additional charges — it\'s included in your subscription.'
+              a: 'When a new server joins your team, you give them an access code. They sign up, complete the program at their own pace, and earn their certificate. No per-server fees, no additional charges, it\'s included in your subscription.'
             },
             {
-              q: 'What happens if a server fails the exam?',
-              a: 'Three attempts are included. If all three are unsuccessful, the server reviews the modules and tries again. No additional charge for retakes.'
+              q: 'What happens if an employee fails the exam?',
+              a: 'Three attempts are included. If all three are unsuccessful, the employee reviews the modules and tries again. No additional charge for retakes.'
             },
             {
-              q: 'Can servers complete the program on their own time?',
-              a: 'Yes — the online program is self-paced. Servers can complete it on any device, at any time. Progress is saved between sessions.'
+              q: 'Can staff complete the program on their own time?',
+              a: 'Yes. The online program is self-paced. front-of-house staff can complete it on any device, at any time. Progress is saved between sessions.'
             },
             {
               q: 'Do we need the subscription to book in-person training?',
-              a: 'No — in-person training is available independently. Many properties start with an in-person session and then add the platform subscription for ongoing new hire onboarding.'
+              a: 'No. In-person training is available independently. Some properties start with an in-person session and then add the platform subscription for ongoing new hire onboarding, while some strictly do online.'
             },
             {
-              q: 'Does my property need to make it mandatory?',
-              a: 'No. RSI works as a voluntary program too. Properties that open the door often find their best servers pursue it on their own — which drives organic buy-in across the team.'
+              q: 'Is RSI just for new hires, or can existing staff use it too?',
+              a: 'Both. RSI was built for onboarding new hires, but properties can also open it up to existing staff as a refresher or for those who want to sharpen their service skills.'
             },
           ].map((item, idx) => (
             <div key={idx} className={`py-8 ${idx !== 5 ? 'border-b border-gold/10' : ''}`}>
@@ -245,7 +245,7 @@ function Pricing() {
         <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>
           Ready to get started?
         </h2>
-        <p className="text-gray-400 mb-8">Reach out and we will put together the right program for your team.</p>
+        <p className="text-gray-400 mb-8">Reach out and we will put together the right plan for your team.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/contact" className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift">
             CONTACT US
