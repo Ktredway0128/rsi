@@ -79,7 +79,13 @@ export const handler = async (event) => {
         <h3 style="font-family: Georgia, serif;">Welcome to RSI</h3>
         <p>Thank you for subscribing to the Refined Service Institute. Your property access code is below.</p>
         <p style="font-size: 24px; font-family: Georgia, serif; color: #B8960C; letter-spacing: 0.1em;"><strong>${code}</strong></p>
-        <p>Share this code with your staff when they sign up at <a href="https://refinedserviceinstitute.com/login">refinedserviceinstitute.com</a>.</p>
+        <p>Share this code with your staff when they are ready to begin. New hires should:</p>
+        <ol>
+          <li>Go to <a href="https://refinedserviceinstitute.com/login">refinedserviceinstitute.com</a></li>
+          <li>Click Login, then Sign Up</li>
+          <li>Enter their information and the access code above</li>
+          <li>Complete the program at their own pace</li>
+        </ol>
         <hr style="border-color: #333; margin: 24px 0;" />
         <p style="font-size: 11px; color: #666; font-style: italic; font-family: Georgia, serif;">Restoring the standard of service.</p>
       `
@@ -104,7 +110,7 @@ export const handler = async (event) => {
     if (customerEmail) {
       await supabase
         .from('access_codes')
-        .update({ is_active: false })
+        .update({ active: false })
         .eq('email', customerEmail)
       console.log(`Access code deactivated for ${customerEmail}`)
     }

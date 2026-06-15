@@ -18,9 +18,6 @@ function Success() {
         <p className="max-w-lg text-gray-400 text-sm leading-relaxed mb-4">
           If it takes longer than expected, reach out and we'll get it to you right away.
         </p>
-        <p className="max-w-lg text-gray-400 text-sm leading-relaxed mb-12">
-          Once you have your access code, share it with your staff. New hires click Login, then Sign Up, enter their information along with the access code, and they're ready to begin.
-        </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             to="/contact"
