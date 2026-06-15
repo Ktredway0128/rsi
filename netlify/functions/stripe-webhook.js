@@ -59,6 +59,7 @@ export const handler = async (event) => {
       current_uses: 0,
       is_active: true,
       email: customerEmail,
+      property_name: customerEmail,
     })
 
     if (insertError) {
