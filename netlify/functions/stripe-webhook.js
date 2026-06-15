@@ -57,7 +57,7 @@ export const handler = async (event) => {
       code,
       max_uses: 10000,
       current_uses: 0,
-      is_active: true,
+      active: true,
       email: customerEmail,
       property_name: customerEmail,
     })
