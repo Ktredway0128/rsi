@@ -13,10 +13,13 @@ function Success() {
           You're In.
         </h1>
         <p className="max-w-lg text-gray-400 text-lg leading-relaxed mb-4">
-          Your subscription is active. Check your email for your property access code — it should arrive within a few minutes.
+          Your subscription is active. Check your email for your property access code. It should arrive within a few minutes.
+        </p>
+        <p className="max-w-lg text-gray-400 text-sm leading-relaxed mb-4">
+          If it takes longer than expected, reach out and we'll get it to you right away.
         </p>
         <p className="max-w-lg text-gray-400 text-sm leading-relaxed mb-12">
-          If it takes longer than expected, reach out and we'll get it to you right away.
+          Once you have your access code, share it with your staff. New hires click Login, then Sign Up, enter their information along with the access code, and they're ready to begin.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
