@@ -70,7 +70,7 @@ function Home() {
               <Link to="/pricing"
               className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
             >
-              SEE PRICING
+              VIEW PRICING
               </Link>
             
               <Link to="/contact"
@@ -97,7 +97,7 @@ function Home() {
 
           <div>
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
-            <h3 className="font-serif text-xl text-white mb-3">Certification</h3>
+            <h3 className="font-serif text-xl text-white mb-3">Completion Certificate</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Servers earn an individual certificate as proof of training completion for on-boarding.
             </p>
@@ -128,7 +128,7 @@ function Home() {
             <div className="hidden md:block absolute top-6 left-1/4 right-1/4 h-px bg-neutral-800" />
 
             {[
-              { step: "01", title: "Enroll", body: "Purchase online access for your team with no scheduling required. In-person workshops available." },
+              { step: "01", title: "Enroll", body: "Purchase online access for your team with no scheduling required." },
               { step: "02", title: "Complete the Program", body: "Work through six modules, online, at your own pace. Takes approximately three hours." },
               { step: "03", title: "Earn Certification", body: "Pass the 40-question exam at 80% or better and receive your certificate as proof of completion." },
             ].map(({ step, title, body }) => (
@@ -159,11 +159,11 @@ function Home() {
 
           <div className="text-center mt-12">
             
-              <Link to="/program"
-              className="hover-lift inline-block border border-gold text-gold text-xs tracking-widest uppercase font-sans px-10 py-4 transition-colors hover:bg-gold hover:text-black"
+            <Link to="/program"
+              className="hover-lift inline-block border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors px-10 py-4"
             >
-              View Full Curriculum
-              </Link>
+              VIEW FULL CURRICULUM
+            </Link>
           </div>
 
         </div>
@@ -177,18 +177,18 @@ function Home() {
         </h2>
         <div className="w-12 h-px bg-gold mx-auto mb-8" />
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            to="/pricing"
-            className="hover-lift px-10 py-4 bg-gold text-black font-bold tracking-widest text-xs font-sans transition-opacity"
-          >
-            SEE PRICING
-          </Link>
-          <Link
-            to="/contact"
-            className="hover-lift px-10 py-4 border border-gold text-gold font-bold tracking-widest text-xs font-sans transition-colors hover:bg-gold hover:text-black"
-          >
-            CONTACT US
-          </Link>
+        <Link
+          to="/pricing"
+          className="hover-lift px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors"
+        >
+          VIEW PRICING
+        </Link>
+        <Link
+          to="/contact"
+          className="hover-lift px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors"
+        >
+          GET IN TOUCH
+        </Link>
         </div>
       </section>
       <Footer />

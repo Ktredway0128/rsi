@@ -1,7 +1,30 @@
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 
+const MONTHLY_PRICE_ID = 'price_1TbOWYGUezZzezl5LiwjeIKq';
+const ANNUAL_PRICE_ID = 'price_1TbOWZGUezZzezl5WAYO1OkV';
+
 function Pricing() {
+  const [loading, setLoading] = useState(null);
+
+  const handleCheckout = async (priceId) => {
+    setLoading(priceId);
+    try {
+      const res = await fetch('/.netlify/functions/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(null);
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen text-white">
       <Navbar />
@@ -16,16 +39,14 @@ function Pricing() {
           Simple, Transparent Pricing
         </h1>
         <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed">
-          A platform subscription for your property. No per-server fees. No renewals. Just access to the standard. 
-          In-person staff training also available when you want the founder of RSI in the room.
-          
+          A platform subscription for your property. No per-server fees. No renewals. Just access to the standard.
         </p>
       </div>
 
       {/* Platform Pricing */}
       <div className="py-20 px-12 border-b border-gold/20">
         <div className="max-w-4xl mx-auto">
-          <p className="text-sm tracking-widest text-gold mb-12 uppercase text-center">Online Platform</p>
+          <p className="text-sm tracking-widest text-gold mb-12 uppercase text-center">Monthly / Annually</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             {/* Monthly */}
@@ -53,6 +74,13 @@ function Pricing() {
                     <p className="text-gray-300 text-sm">{item}</p>
                   </div>
                 ))}
+                <button
+                  onClick={() => handleCheckout(MONTHLY_PRICE_ID)}
+                  disabled={loading === MONTHLY_PRICE_ID}
+                  className="mt-6 w-full px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors uppercase hover-lift disabled:opacity-50"
+                >
+                  {loading === MONTHLY_PRICE_ID ? 'Loading...' : 'Start Today'}
+                </button>
               </div>
             </div>
 
@@ -80,108 +108,24 @@ function Pricing() {
                     <p className="text-gray-300 text-sm">{item}</p>
                   </div>
                 ))}
+                <button
+                  onClick={() => handleCheckout(ANNUAL_PRICE_ID)}
+                  disabled={loading === ANNUAL_PRICE_ID}
+                  className="mt-6 w-full px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors uppercase hover-lift disabled:opacity-50"
+                >
+                  {loading === ANNUAL_PRICE_ID ? 'Loading...' : 'Start Today'}
+                </button>
               </div>
             </div>
           </div>
-            <div className="mt-8 text-center">
-              <p className="text-gray-400 text-sm">
-                Managing multiple locations?{' '}
-                <a href="/contact" className="text-gold hover:text-gold/70 transition-colors">
-                  Get in touch for enterprise pricing.
-                </a>
-              </p>
-            </div>        
 
-        </div>
-      </div>
-
-      {/* In-Person Callout */}
-      <div className="py-16 px-12 border-b border-gold/20 bg-gold/5">
-        <div className="max-w-4xl mx-auto">
-          
-          {/* Video — full width above content */}
-          <div className="overflow-hidden rounded-sm mb-12 -mx-12">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-64 md:h-80 object-contain"
-              src="/pricing-training.mp4"
-            />
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="flex-1">
-              <p className="text-sm tracking-widest text-gold mb-4 uppercase">The Most Powerful Way to Train Your Team</p>
-              <h2
-                className="text-3xl font-bold text-white mb-6"
-                style={{ fontFamily: 'Georgia, serif' }}
-              >
-                There is nothing like being in the room.
-              </h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                The online platform delivers the full RSI curriculum and a consistent standard across your entire team. Every server who completes it is genuinely prepared. The standard does not change based on how you get there.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                In-person staff training adds something the screen cannot replicate. Live demonstration of tableside mechanics, real-time correction, and the shared energy of an entire team going through training together. And unlike the online program, in-person is built entirely around you. Your team. Your menu. Your beverage program. Your service culture. The founder of RSI doesn't come in and deliver a script, he comes in and trains your specific people for your specific restaurant at the highest level.
-              </p>
-            </div>
-            <div className="flex-shrink-0 md:w-72">
-              <div className="border border-gold/30 p-6">
-                <p className="text-xs tracking-widest text-gold uppercase mb-6">In-Person Includes</p>
-                {[
-                  'Live demonstration of tableside mechanics',
-                  'Real-time correction and coaching',
-                  'Live service scenario roleplay',
-                  'Training tailored to your menu and atmosphere',
-                  'Direct Q&A with Kyle Tredway',
-                  'Team energy and shared accountability',
-                  'Twenty years of answers in the room',
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 mb-4">
-                    <div className="w-1 h-1 rounded-full bg-gold mt-2 flex-shrink-0" />
-                    <p className="text-gray-300 text-sm leading-relaxed">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* In-Person Pricing */}
-      <div className="py-20 px-12 border-b border-gold/20">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm tracking-widests text-gold mb-12 uppercase text-center">In-Person Training</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <div className="border border-gold/20 p-8">
-              <p className="text-xs tracking-widest text-gold uppercase mb-4">Local</p>
-              <p className="text-xs text-gray-500 font-sans mb-4">Maricopa County</p>
-              <div className="mb-4">
-                <span className="text-5xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>$275</span>
-                <span className="text-gray-400 text-sm ml-2">/ server</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Half-day in-person training delivered at your property by the founder of RSI. A fully customized session built around your team, your menu, your beverage program, and your service culture.
-              </p>
-              <p className="text-xs text-gold/60 tracking-wide">Minimum 5 servers</p>
-            </div>
-
-            <div className="border border-gold bg-gold/5 p-8">
-              <p className="text-xs tracking-widest text-gold uppercase mb-4">Travel</p>
-              <p className="text-xs text-gray-500 font-sans mb-4">Nationwide</p>
-              <div className="mb-4">
-                <span className="text-5xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>$375</span>
-                <span className="text-gray-400 text-sm ml-2">/ server + travel</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Full in-person training at properties outside the Maricopa County market. Fully customized to your team, your menu, your beverage program, and your service culture. Delivered anywhere in the country.
-              </p>
-              <p className="text-xs text-gold/60 tracking-wide">Minimum 8 servers · Travel at cost</p>
-            </div>
-
+          <div className="mt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              Managing multiple locations?{' '}
+              <a href="/contact" className="text-gold hover:text-gold/70 transition-colors">
+                Get in touch for enterprise pricing.
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -212,6 +156,10 @@ function Pricing() {
               a: 'Approximately three hours to complete all six modules, reflection exercises, scenarios, and the final exam. Designed to fit within a half day.'
             },
             {
+              q: 'Is RSI only for servers?',
+              a: 'No. RSI is built for all front-of-house serving staff; servers, server assistants, food runners, and anyone on the floor who interacts with guests.'
+            },
+            {
               q: 'How does the subscription work for new hires?',
               a: 'When a new server joins your team, you give them an access code. They sign up, complete the program at their own pace, and earn their certificate. No per-server fees, no additional charges, it\'s included in your subscription.'
             },
@@ -221,11 +169,7 @@ function Pricing() {
             },
             {
               q: 'Can staff complete the program on their own time?',
-              a: 'Yes. The online program is self-paced. front-of-house staff can complete it on any device, at any time. Progress is saved between sessions.'
-            },
-            {
-              q: 'Do we need the subscription to book in-person training?',
-              a: 'No. In-person training is available independently. Some properties start with an in-person session and then add the platform subscription for ongoing new hire onboarding, while some strictly do online.'
+              a: 'Yes. The online program is self-paced. Front-of-house staff can complete it on any device, at any time. Progress is saved between sessions.'
             },
             {
               q: 'Is RSI just for new hires, or can existing staff use it too?',
@@ -247,11 +191,17 @@ function Pricing() {
         </h2>
         <p className="text-gray-400 mb-8">Reach out and we will put together the right plan for your team.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift">
-            CONTACT US
-          </a>
-          <a href="/program" className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift">
+          <a
+            href="/program"
+            className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
+          >
             VIEW THE PROGRAM
+          </a>
+          <a
+            href="/contact"
+            className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift"
+          >
+            GET IN TOUCH
           </a>
         </div>
       </div>

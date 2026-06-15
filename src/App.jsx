@@ -13,6 +13,7 @@ import Certificate from './pages/Certificate'
 import EstablishmentCertificate from './pages/EstablishmentCertificate'
 import ResetPassword from './pages/ResetPassword'
 import Terms from './pages/Terms'
+import Success from './pages/Success'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -36,6 +37,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/success" element={<Success />} />
 
         {/* Protected routes */}
         <Route path="/dashboard" element={

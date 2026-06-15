@@ -237,15 +237,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* In-person note */}
-            <div className="bg-neutral-900 border border-neutral-800 p-5">
-              <p className="text-xs tracking-widest uppercase text-gold font-sans mb-2">In-Person Training</p>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                Local Maricopa County properties from <span className="text-white">$275/server</span> (min. 5).
-                Travel engagements available nationwide from <span className="text-white">$375/server</span> (min. 8 plus travel).
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -258,14 +249,14 @@ export default function Contact() {
         </h2>
         <div className="w-12 h-px bg-gold mx-auto mb-6" />
         <p className="text-gray-400 text-sm max-w-md mx-auto mb-8">
-          RSI certification confirms your team has completed the training, a visible mark of preparation for guests and managers alike.
+        RSI certification confirms your team has completed the training. A clear record for management and a foundation guests will feel in every interaction.
         </p>
-        <a
-          href="/program"
-          className="hover-lift inline-block border border-gold text-gold text-xs tracking-widest uppercase font-sans px-10 py-4 transition-colors hover:bg-gold hover:text-black"
-        >
-          View the Program
-        </a>
+          <a
+            href="/program"
+            className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
+          >
+            VIEW THE PROGRAM
+          </a>
       </section>
       <Footer />
     </div>

@@ -35,7 +35,7 @@ const modules = [
   {
     num: '06',
     title: 'The Guest Journey',
-    description: 'Anticipating needs, making it personal, handling complaints gracefully, the farewell, and turning tables without a guest ever feeling rushed. The standard that makes guests return and tell everyone.',
+    description: 'Anticipating needs, making it personal, handling complaints gracefully, the farewell, and turning tables without a guest ever feeling rushed. Proper vocabulary, appearance standards, and the details that signal professionalism before a word is spoken. The standard that makes guests return and tell everyone.',
     image: null,
   },
 ]

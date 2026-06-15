@@ -40,7 +40,10 @@ function Navbar() {
               <button onClick={handleSignOut} className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans">Sign Out</button>
             </div>
           ) : (
-            <Link to="/login" className="px-6 py-2 border border-gold text-gold text-xs tracking-widest font-bold hover:bg-gold hover:text-black transition-colors uppercase hover-lift">Login</Link>
+            <div className="flex items-center gap-6">
+              <Link to="/pricing" className="px-8 py-3 bg-gold text-black text-sm tracking-widest font-bold hover:bg-gold/80 transition-colors uppercase hover-lift">Start Today</Link>
+              <Link to="/login" className="px-6 py-2 border border-gold text-gold text-xs tracking-widest font-bold hover:bg-gold hover:text-black transition-colors uppercase hover-lift">Login</Link>
+            </div>
           )}
         </div>
 
@@ -70,7 +73,10 @@ function Navbar() {
               <button onClick={() => { handleSignOut(); setOpen(false) }} className="text-xs tracking-widest uppercase text-gray-500 hover:text-gold transition-colors font-sans text-left">Sign Out</button>
             </>
           ) : (
-            <Link to="/login" onClick={() => setOpen(false)} className="text-xs tracking-widest text-gold border border-gold px-4 py-2 text-center hover:bg-gold hover:text-black transition-colors uppercase">Login</Link>
+            <>
+              <Link to="/pricing" onClick={() => setOpen(false)} className="text-xs tracking-widest text-black bg-gold px-4 py-2 text-center hover:bg-gold/80 transition-colors uppercase font-bold">Start Today</Link>
+              <Link to="/login" onClick={() => setOpen(false)} className="text-xs tracking-widest text-gold border border-gold px-4 py-2 text-center hover:bg-gold hover:text-black transition-colors uppercase">Login</Link>
+            </>
           )}
         </div>
       </div>
