@@ -63,8 +63,8 @@ export const handler = async (event) => {
     })
 
     if (insertError) {
-      console.error('Supabase insert error:', insertError)
-      return { statusCode: 500, body: 'Database error' }
+      console.error('Supabase insert error:', JSON.stringify(insertError))
+      return { statusCode: 500, body: JSON.stringify({ error: 'Database error', details: insertError }) }
     }
 
     // Send email via Resend
