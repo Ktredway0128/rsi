@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 
-const MONTHLY_PRICE_ID = 'price_1Tiei1GUezZzezl5xl8QMl7p';
-const ANNUAL_PRICE_ID = 'price_1TieiRGUezZzezl5fYCSJIa3';
+const MONTHLY_PRICE_ID = 'price_1TbOWYGUezZzezl5LiwjeIKq';
+const ANNUAL_PRICE_ID = 'price_1TbOWZGUezZzezl5WAYO1OkV';
 
 function Pricing() {
   const [loading, setLoading] = useState(null);

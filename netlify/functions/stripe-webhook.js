@@ -77,7 +77,7 @@ export const handler = async (event) => {
         <p style="font-family: Georgia, serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #B8960C;">Refined Service Institute</p>
         <hr style="border-color: #B8960C; opacity: 0.5; margin: 16px 0;" />
         <h3 style="font-family: Georgia, serif;">Welcome to RSI</h3>
-        <p>Thank you for subscribing to the Refined Service Institute. Your property access code is below.</p>
+        <p>Thank you for subscribing to Refined Service Institute. Your property access code is below.</p>
         <p style="font-size: 24px; font-family: Georgia, serif; color: #B8960C; letter-spacing: 0.1em;"><strong>${code}</strong></p>
         <p>Share this code with your staff when they are ready to begin. New hires should:</p>
         <ol>
