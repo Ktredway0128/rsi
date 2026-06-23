@@ -56,11 +56,11 @@ function Home() {
             className="text-4xl font-bold text-gold mb-8"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            Certify Your Standard.
+            Define Your Standard.
           </h2>
 
           <p className="max-w-2xl text-gray-300 text-lg leading-relaxed mb-12">
-            The professional training program for front-of-house serving staff.
+            The professional training program for onboarding front-of-house serving staff.
             In a hospitality landscape that has prioritized hype over genuine human
             connection, RSI exists to restore the standard.
           </p>
