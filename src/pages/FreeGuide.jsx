@@ -68,7 +68,7 @@ export default function FreeGuide() {
                 </h1>
                 <div className="w-12 h-px bg-gold mx-auto my-6" />
                 <p className="text-gray-400 text-base leading-relaxed">
-                  A one-page language guide for front-of-house staff. The wrong phrases, the right replacements, and why it matters — ready to print and post.
+                  A one-page language guide for front-of-house staff. The wrong phrases, the right replacements, and why it matters. Ready to print and post.
                 </p>
               </div>
 
@@ -104,7 +104,7 @@ export default function FreeGuide() {
                   disabled={status === 'loading'}
                   className="mt-2 bg-gold text-black text-xs tracking-widest uppercase font-sans font-semibold px-10 py-4 transition-opacity hover:opacity-90 disabled:opacity-60"
                 >
-                  {status === 'loading' ? 'Sending...' : 'Send Me the Guide'}
+                  {status === 'loading' ? 'Sending...' : 'Send Me the One-Sheet'}
                 </button>
 
                 {status === 'error' && (
