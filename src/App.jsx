@@ -1,3 +1,4 @@
+import ROICalculator from './pages/ROICalculator'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Program from './pages/Program'
@@ -38,6 +39,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/roi-calculator" element={<ROICalculator />} />
 
         {/* Protected routes */}
         <Route path="/dashboard" element={

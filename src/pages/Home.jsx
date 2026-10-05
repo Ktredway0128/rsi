@@ -32,56 +32,55 @@ function Home() {
 
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-6 md:-mt-16">
 
-          <h1
-            className="text-8xl font-bold text-gold leading-none"
-            style={{ fontFamily: 'Georgia, serif', letterSpacing: '-0.01em' }}
-          >
-            RSI
-          </h1>
+        <h1
+          className="text-9xl font-bold text-gold leading-none"
+          style={{ fontFamily: 'Georgia, serif', letterSpacing: '-0.01em' }}
+        >
+          RSI
+        </h1>
 
-          <div className="w-48 h-px bg-gold opacity-70 my-3" />
+        <div className="w-48 h-px bg-gold opacity-70 my-3" />
 
-          <p className="text-xs tracking-widest text-gold mb-16 font-light uppercase">
-            Refined Service Institute
-          </p>
+        <p className="text-xs tracking-widest text-gold mb-16 font-light uppercase">
+          Refined Service Institute
+        </p>
 
-          <h2
-            className="text-4xl font-bold text-white mb-3"
-            style={{ fontFamily: 'Georgia, serif' }}
-          >
-            Elevate Your Service.
-          </h2>
+        <h2 className="text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Georgia, serif' }}>
+          Elevate Your Service.
+        </h2>
 
-          <h2
-            className="text-4xl font-bold text-gold mb-8"
-            style={{ fontFamily: 'Georgia, serif' }}
-          >
-            Define Your Standard.
-          </h2>
+        <h2 className="text-4xl font-bold text-gold mb-8" style={{ fontFamily: 'Georgia, serif' }}>
+          Define Your Standard.
+        </h2>
 
-          <p className="max-w-2xl text-gray-300 text-lg leading-relaxed mb-12">
-            The professional training program for onboarding front-of-house serving staff.
-            In a hospitality landscape that has prioritized hype over genuine human
-            connection, RSI exists to restore the standard.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            
-              <Link to="/pricing"
-              className="px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors hover-lift"
-            >
-              VIEW PRICING
-              </Link>
-            
-              <Link to="/contact"
-              className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift"
-            >
+        <div className="flex flex-col sm:flex-row gap-4 mb-20">
+            <Link to="/pricing" className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift">
+              SEE PRICING
+            </Link>
+            <Link to="/contact" className="px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors hover-lift">
               GET IN TOUCH
-              </Link>
+            </Link>
           </div>
 
+          <div className="flex flex-col items-center gap-3">
+              <p className="text-xs tracking-widest uppercase text-gray-400 font-sans">
+                Is RSI worth it for your property?
+              </p>
+              <div className="p-1 border border-gold/40">
+                <Link
+                  to="/roi-calculator"
+                  className="hover-lift inline-block bg-gold text-black text-sm tracking-widest font-bold uppercase px-10 py-4 transition-colors"
+                  style={{
+                    boxShadow: '0 0 25px rgba(184, 150, 12, 0.7)',
+                    animation: 'pulse-glow 2.5s ease-in-out infinite',
+                  }}
+                >
+                  Calculate Your ROI →
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
       {/* ── Value Props ── */}
       <section className="border-t border-neutral-900 px-6 py-24">
@@ -123,10 +122,7 @@ function Home() {
           <div className="w-12 h-px bg-gold mx-auto mb-16" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-
-            {/* Connector line — desktop only */}
             <div className="hidden md:block absolute top-6 left-1/4 right-1/4 h-px bg-neutral-800" />
-
             {[
               { step: "01", title: "Enroll", body: "Purchase online access for your team with no scheduling required." },
               { step: "02", title: "Complete the Program", body: "Work through six modules, online, at your own pace. Takes approximately three hours." },
@@ -140,7 +136,6 @@ function Home() {
                 <p className="text-gray-400 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
-
           </div>
         </div>
       </section>
@@ -148,24 +143,18 @@ function Home() {
       {/* ── Modules ── */}
       <section className="border-t border-neutral-900 px-6 py-24">
         <div className="max-w-4xl mx-auto">
-
           <div className="text-center mb-16">
             <p className="text-xs tracking-[0.25em] uppercase text-gold font-sans mb-4">The Curriculum</p>
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">Six Modules. One Standard.</h2>
             <div className="w-12 h-px bg-gold mx-auto" />
           </div>
-
-         
-
           <div className="text-center mt-12">
-            
             <Link to="/program"
               className="hover-lift inline-block border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors px-10 py-4"
             >
               VIEW FULL CURRICULUM
             </Link>
           </div>
-
         </div>
       </section>
 
@@ -177,18 +166,12 @@ function Home() {
         </h2>
         <div className="w-12 h-px bg-gold mx-auto mb-8" />
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Link
-          to="/pricing"
-          className="hover-lift px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors"
-        >
-          VIEW PRICING
-        </Link>
-        <Link
-          to="/contact"
-          className="hover-lift px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors"
-        >
-          GET IN TOUCH
-        </Link>
+          <Link to="/pricing" className="hover-lift px-8 py-4 bg-gold text-black font-bold tracking-widest text-sm hover:bg-gold/80 transition-colors">
+            VIEW PRICING
+          </Link>
+          <Link to="/contact" className="hover-lift px-8 py-4 border border-gold text-gold font-bold tracking-widest text-sm hover:bg-gold hover:text-black transition-colors">
+            GET IN TOUCH
+          </Link>
         </div>
       </section>
       <Footer />
