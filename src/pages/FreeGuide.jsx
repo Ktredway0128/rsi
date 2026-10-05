@@ -49,10 +49,10 @@ export default function FreeGuide() {
               <div className="w-12 h-px bg-gold mx-auto" />
               <p className="text-xs tracking-widest uppercase text-gold font-sans">Check Your Inbox</p>
               <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>
-                Your guide is on its way.
+                Your One-Sheet is on its way.
               </h1>
               <p className="text-gray-400 text-base leading-relaxed">
-                We sent <span className="text-white">{form.email}</span> the language guide. Check your inbox — and your spam folder if you don't see it within a minute.
+                We sent <span className="text-white">{form.email}</span> the language guide. Check your inbox, and your spam folder if you don't see it within a minute.
               </p>
               <div className="w-12 h-px bg-gold mx-auto" />
             </div>
