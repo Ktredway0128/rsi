@@ -46,7 +46,7 @@ exports.handler = async (event) => {
           </p>
 
           <a href="${PDF_URL}" style="display:inline-block;background:#B8960C;color:#000000;text-decoration:none;font-family:Arial,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;padding:14px 32px;margin:8px 0 28px;">
-            Download the Guide
+            Download the One-Sheet
           </a>
 
           <p style="font-size:15px;color:#9A9A9A;line-height:1.7;font-family:Arial,sans-serif;margin:0 0 20px;">

@@ -52,7 +52,7 @@ export default function FreeGuide() {
                 Your One-Sheet is on its way.
               </h1>
               <p className="text-gray-400 text-base leading-relaxed">
-                We sent <span className="text-white">{form.email}</span> the language guide. Check your inbox, and your spam folder if you don't see it within a minute.
+                We sent <span className="text-white">{form.email}</span> the language One-Sheet. Check your inbox, or your spam folder if you don't see it within a minute.
               </p>
               <div className="w-12 h-px bg-gold mx-auto" />
             </div>

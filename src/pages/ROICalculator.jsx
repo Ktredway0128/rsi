@@ -192,7 +192,7 @@ export default function ROICalculator() {
               <div className="border border-neutral-800 p-8 h-full flex flex-col justify-center items-center text-center">
                 <div className="w-12 h-px bg-gold mx-auto mb-6" />
                 <p className="text-gray-600 text-sm font-sans leading-relaxed">
-                  Enter your property details and click Calculate to see what undertrained staff is costing you annually.
+                  Enter your property details and click Calculate to see what undertrained/new-hire staff is costing you annually.
                 </p>
                 <div className="w-12 h-px bg-gold mx-auto mt-6" />
               </div>

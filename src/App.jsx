@@ -1,3 +1,4 @@
+import Links from './pages/Links'
 import FreeGuide from './pages/FreeGuide'
 import ROICalculator from './pages/ROICalculator'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
@@ -42,6 +43,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/roi-calculator" element={<ROICalculator />} />
         <Route path="/free-guide" element={<FreeGuide />} />
+        <Route path="/links" element={<Links />} />
 
         {/* Protected routes */}
         <Route path="/dashboard" element={
